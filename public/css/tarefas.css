@@ -1,0 +1,547 @@
+/* ========== CABEÇALHO DA PÁGINA ========== */
+.cabecalho-tarefas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.titulo-tarefas {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo-tarefas h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.titulo-tarefas svg {
+    color: #0066da;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+}
+
+.botao-adicionar {
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 28px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 102, 218, 0.3);
+    letter-spacing: 0.3px;
+}
+
+.botao-adicionar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 102, 218, 0.4);
+}
+
+.botao-adicionar:active {
+    transform: translateY(0);
+}
+
+/* ========== GRADE DE TAREFAS ========== */
+.grade-tarefas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    padding-bottom: 40px;
+}
+
+.card-tarefa {
+    background: linear-gradient(135deg, #f5f7fa 0%, #f0f3f7 100%);
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 102, 218, 0.08);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    gap: 16px;
+}
+
+.card-tarefa:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 102, 218, 0.15);
+    border-color: rgba(0, 102, 218, 0.2);
+}
+
+.indicador-prioridade {
+    width: 4px;
+    height: 100%;
+    border-radius: 16px 0 0 16px;
+    flex-shrink: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.conteudo-tarefa {
+    flex: 1;
+    padding-left: 12px;
+}
+
+.card-tarefa h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.2px;
+    word-break: break-word;
+}
+
+.info-tarefa {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.info-tarefa p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+.info-tarefa strong {
+    font-weight: 700;
+    color: #333;
+}
+
+.acoes-tarefa {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.botao-concluir,
+.botao-editar,
+.botao-deletar {
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.botao-concluir {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    padding: 8px 12px;
+}
+
+.botao-concluir:hover {
+    background-color: rgba(34, 197, 94, 0.2);
+    transform: translateY(-2px);
+}
+
+.botao-concluir svg {
+    width: 16px;
+    height: 16px;
+}
+
+.botao-editar {
+    background-color: rgba(0, 102, 218, 0.1);
+    color: #0066da;
+    padding: 8px 14px;
+}
+
+.botao-editar:hover {
+    background-color: rgba(0, 102, 218, 0.2);
+    transform: translateY(-2px);
+}
+
+.botao-deletar {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    padding: 8px 12px;
+}
+
+.botao-deletar:hover {
+    background-color: rgba(231, 76, 60, 0.2);
+    transform: translateY(-2px);
+}
+
+.botao-deletar svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ========== MODAIS ========== */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+.overlay.ativo {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    border-radius: 24px;
+    padding: 40px;
+    z-index: 200;
+    max-width: 520px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 102, 218, 0.3);
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.ativo {
+    display: block;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, -45%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.conteudo-modal {
+    color: white;
+}
+
+.cabecalho-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.cabecalho-modal h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.botao-fechar {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.botao-fechar:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========== FORMULÁRIO ========== */
+.formulario-tarefa {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.grupo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grupo-formulario label {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.3px;
+}
+
+.grupo-formulario input,
+.grupo-formulario select {
+    padding: 14px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+}
+
+.grupo-formulario input::placeholder,
+.grupo-formulario select::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.grupo-formulario input:focus,
+.grupo-formulario select:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+.grupo-formulario select {
+    cursor: pointer;
+}
+
+.grupo-formulario select option {
+    background-color: #0052b3;
+    color: white;
+}
+
+.botao-salvar {
+    padding: 14px 24px;
+    background-color: white;
+    color: #0066da;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 12px;
+    letter-spacing: 0.3px;
+}
+
+.botao-salvar:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+.botao-salvar:active {
+    transform: translateY(0);
+}
+
+/* ========== MODAL DE EXCLUSÃO ========== */
+.conteudo-excluir {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.titulo-excluir {
+    margin-bottom: 24px;
+}
+
+.titulo-excluir h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.2px;
+}
+
+.titulo-excluir h3 {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.mensagem-excluir {
+    font-size: 16px;
+    margin-bottom: 32px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+}
+
+.botoes-excluir {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.botao-nao,
+.botao-sim {
+    padding: 14px 36px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.botao-nao {
+    background-color: white;
+    color: #0066da;
+}
+
+.botao-nao:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.botao-sim {
+    background-color: white;
+    color: #0066da;
+}
+
+.botao-sim:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 768px) {
+    .cabecalho-tarefas {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .titulo-tarefas h1 {
+        font-size: 26px;
+    }
+
+    .botao-adicionar {
+        width: 100%;
+    }
+
+    .grade-tarefas {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 18px;
+    }
+
+    .modal {
+        max-width: 90%;
+        padding: 30px;
+    }
+
+    .card-tarefa {
+        padding: 16px;
+    }
+
+    .card-tarefa h3 {
+        font-size: 15px;
+    }
+
+    .info-tarefa p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .conteudo-principal {
+        padding: 20px;
+    }
+
+    .titulo-tarefas h1 {
+        font-size: 22px;
+    }
+
+    .titulo-tarefas svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .grade-tarefas {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .modal {
+        max-width: 95%;
+        padding: 24px;
+    }
+
+    .cabecalho-modal h2 {
+        font-size: 18px;
+    }
+
+    .titulo-excluir h3 {
+        font-size: 28px;
+    }
+
+    .botoes-excluir {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .botao-nao,
+    .botao-sim {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    .botao-adicionar {
+        padding: 12px 24px;
+        font-size: 13px;
+    }
+
+    .card-tarefa {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .card-tarefa h3 {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .info-tarefa {
+        gap: 4px;
+    }
+
+    .info-tarefa p {
+        font-size: 11px;
+    }
+
+    .acoes-tarefa {
+        gap: 6px;
+    }
+
+    .botao-concluir,
+    .botao-editar,
+    .botao-deletar {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+}

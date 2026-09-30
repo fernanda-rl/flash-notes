@@ -1,0 +1,111 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html{
+    height: 100%;
+    width: 100%;
+}
+
+
+/* Seção Esquerda */
+#ativo{
+    border-bottom: 3px solid;
+}
+
+.menu-superior {
+    flex: 1;
+    background-color: #fdfbf2;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    position: relative;
+}
+
+.menu-superior ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.menu-superior a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.menu-superior a.ativo {
+    border-bottom: 3px solid #0056b3;
+    padding-bottom: 5px;
+}
+
+#logo_c{
+    width: 492px;
+    height: 126px;
+}
+
+.principal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    /*background-color: blueviolet;*/
+    /*min-height: 100vh ;*/
+    padding: 100px 100px 100px 50px;
+    font-size: 25px;
+    background-color: #fdfbf2;
+}
+
+.titulo-principal{
+    font-family: 'Pacifico', cursive;
+}
+
+.conteudo-principal{
+    width: 600px;
+    height: 600px;
+    /*background-color: aquamarine;*/
+    justify-content: center; /*alinha horizontalmente*/
+    display: flex;
+    flex-direction: column;
+}
+
+.imagem-principal{
+    justify-content: right;
+    display: flex;
+    flex: 1;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+    /*background-color: black;*/
+
+}
+
+#img_calend{
+    width: 600px;
+    height: 600px;
+}
+
+/* Mesmo visual do .rodape-esquerdo usado no login, cadastro,
+   esqueci a senha e fale conosco. O padding lateral de 40px alinha
+   o rodapé com o menu do topo, e o fundo creme continua o da
+   .principal, que antes terminava acima e deixava uma faixa branca. */
+.footer{
+    display: flex;
+    gap: 40px;
+    background-color: #fdfbf2;
+    color: #666;
+    font-size: 0.9rem;
+    padding: 20px 40px;
+}
+
+.footer a{
+    text-decoration: none;
+    color: #666;
+}
+/* Responsividade básica */
+@media (max-width: 768px) {
+
+}

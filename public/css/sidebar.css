@@ -1,0 +1,355 @@
+/* ==========================================================================
+   BARRA SUPERIOR
+   ========================================================================== */
+
+/* Saudação ao lado dos botões da barra superior */
+.saudacao-usuario {
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: 4px;
+    white-space: nowrap;
+}
+
+.saudacao-usuario strong {
+    font-weight: 700;
+}
+
+/* Em telas estreitas a barra fica apertada: a saudação sai e sobram
+   os botões de notificação e perfil. */
+@media (max-width: 600px) {
+    .saudacao-usuario {
+        display: none;
+    }
+}
+
+.barra-superior {
+    background-color: #0066da;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.barra-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.barra-direita {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.botao-menu-mobile {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.botao-menu-mobile span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+}
+
+.botao-notificacao,
+.botao-perfil {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   SIDEBAR
+   ========================================================================== */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 200px;
+    height: calc(100vh - 60px);
+    background-color: #0066da;
+    padding: 20px 0;
+    overflow-y: auto;
+    z-index: 50;
+}
+
+.menu-navegacao {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.item-menu:hover {
+    background: rgba(255,255,255,.1);
+}
+
+.item-menu.ativo {
+    background: rgba(255,255,255,.2);
+    border-left: 4px solid white;
+}
+
+/* ==========================================================================
+   MENU PERFIL
+   ========================================================================== */
+
+.menu-perfil {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 280px;
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    z-index: 200;
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.menu-perfil.ativo {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.perfil-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-perfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.email-usuario {
+    font-size: 12px;
+    color: #666;
+}
+
+.divisor-menu {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 10px 0;
+}
+
+.opcao-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 6px;
+}
+
+.opcao-menu:hover {
+    background: #f5f5f5;
+}
+
+.opcao-sair {
+    color: #e74c3c;
+}
+
+/* ==========================================================================
+   NOTIFICAÇÕES
+   ========================================================================== */
+
+.menu-notificacoes {
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    padding: 24px;
+    width: 320px;
+    z-index: 1000;
+    display: none;
+}
+
+.menu-notificacoes.ativo {
+    display: block;
+}
+
+.topo-notificacoes h3 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.item-notificacao {
+    padding: 4px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 16px;
+}
+
+.item-notificacao:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.item-notificacao h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.item-notificacao p {
+    font-size: 15px;
+    margin-bottom: 8px;
+    line-height: 1.35;
+}
+
+.rodape-notificacao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.botao-marcar-lida {
+    color: #0026e6;
+    text-decoration: underline;
+}
+
+.botao-marcar-lida:hover {
+    color: #001aa3;
+}
+
+.sem-notificacoes {
+    text-align: center;
+    color: #777;
+    padding: 16px 0;
+}
+
+.item-notificacao.nao-lida {
+    background: #f5f9ff;
+    border-left: 4px solid #0066da;
+    padding-left: 12px;
+    border-radius: 8px;
+}
+
+.item-notificacao {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+}
+
+.item-notificacao:hover {
+    background: #f5f9ff;
+    transform: translateY(-2px);
+}
+
+.topo-notificacoes h3
+
+.topo-notificacoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ececec;
+}
+
+.botao-marcar-lida {
+    text-decoration: none;
+    background: #0066da;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.botao-marcar-lida:hover {
+    background: #0052b0;
+    color: white;
+}
+
+.rodape-notificacao span {
+    color: #888;
+    font-size: 12px;
+}
+
+.menu-notificacoes {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.menu-notificacoes::-webkit-scrollbar {
+    width: 6px;
+}
+
+.menu-notificacoes::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    .botao-menu-mobile {
+        display: flex;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform .3s;
+    }
+
+    .sidebar.ativo {
+        transform: translateX(0);
+    }
+
+    .menu-perfil {
+        width: 250px;
+        right: 10px;
+    }
+
+    .menu-notificacoes {
+        width: calc(100vw - 20px);
+        right: 10px;
+        left: 10px;
+    }
+}

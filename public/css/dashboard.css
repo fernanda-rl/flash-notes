@@ -1,0 +1,569 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Container Principal */
+.container-dashboard {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* ========== BARRA SUPERIOR ========== */
+.barra-superior {
+    background-color: #0066da;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.barra-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.botao-menu-mobile {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.botao-menu-mobile span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.logo-flashnotes {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.logo-flashnotes span {
+    font-style: normal;
+    margin-left: 5px;
+}
+
+.barra-direita {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.botao-notificacao,
+.botao-perfil {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+
+.botao-notificacao:hover,
+.botao-perfil:hover {
+    opacity: 0.8;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 200px;
+    height: calc(100vh - 60px);
+    background-color: #0066da;
+    padding: 20px 0;
+    overflow-y: auto;
+    z-index: 50;
+    transition: transform 0.3s ease;
+}
+
+.menu-navegacao {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.item-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.item-menu:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.item-menu.ativo {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-left: 4px solid white;
+    padding-left: 16px;
+}
+
+.item-menu svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* ========== MENU PERFIL ========== */
+.menu-perfil {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 280px;
+    padding: 15px;
+    z-index: 200;
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.menu-perfil.ativo {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.perfil-info {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.avatar-perfil {
+    width: 50px;
+    height: 50px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-usuario {
+    flex: 1;
+}
+
+.nome-usuario {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.email-usuario {
+    font-size: 12px;
+    color: #666;
+}
+
+.divisor-menu {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 10px 0;
+}
+
+.opcao-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.opcao-menu:hover {
+    background-color: #f5f5f5;
+}
+
+.opcao-menu.opcao-sair {
+    color: #e74c3c;
+}
+
+.opcao-menu svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ========== MENSAGEM DE FEEDBACK ========== */
+/* Faixa de sucesso/erro exibida após as ações. Usada por todas as telas,
+   por isso vive aqui e não no CSS de uma página específica. */
+.mensagem-feedback {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.mensagem-feedback p {
+    margin: 0;
+}
+
+.mensagem-feedback.mensagem-sucesso {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.mensagem-feedback.mensagem-erro {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid rgba(198, 40, 40, 0.2);
+}
+
+.botao-fechar-mensagem {
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.botao-fechar-mensagem:hover {
+    opacity: 1;
+}
+
+/* ========== CONTEÚDO PRINCIPAL ========== */
+.conteudo-principal {
+    margin-left: 200px;
+    padding: 30px;
+    flex: 1;
+}
+
+.colunas-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* ========== COLUNAS ========== */
+.coluna {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cabecalho-coluna {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.cabecalho-coluna h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.cabecalho-coluna svg {
+    color: #0066da;
+}
+
+/* ========== LISTA DE ITENS ========== */
+.lista-itens {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 500px;
+    overflow-y: auto;
+    /* Explícito: sem isto o navegador deduz "auto" a partir do overflow-y
+       e basta qualquer item transbordar um pixel para surgir uma barra
+       de rolagem horizontal. A lista nunca precisa rolar na horizontal. */
+    overflow-x: hidden;
+}
+
+/* Tarefas */
+/* Os itens do dashboard são links para a tela correspondente */
+.item-tarefa {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    border-left: 4px solid #0066da;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* O destaque do hover não desloca o item: qualquer transform aqui
+   empurraria o conteúdo para fora de .lista-itens, que tem overflow-y
+   automático, e o navegador abriria uma barra de rolagem horizontal. */
+.item-tarefa:hover,
+.item-evento:hover,
+.item-horario:hover {
+    background-color: #eef4fd;
+    border-left-color: #0052b3;
+}
+
+.lista-vazia {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+    padding: 8px 2px;
+}
+
+.titulo-tarefa {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.detalhes-tarefa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.vencimento {
+    color: #666;
+}
+
+.prioridade {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.prioridade-alta {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.prioridade-média {
+    background-color: #fff3e0;
+    color: yellow;
+}
+
+.prioridade-baixa {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-tarefa {
+    font-size: 12px;
+    color: #0066da;
+    font-weight: 500;
+}
+
+/* Disciplina vinculada a uma tarefa ou evento */
+.disciplina-item {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: rgba(0, 102, 218, 0.1);
+    color: #0066da;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Eventos */
+.item-evento {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.marcador-evento {
+    width: 12px;
+    height: 12px;
+    background-color: #0066da;
+    border-radius: 50%;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.info-evento {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-evento strong {
+    font-size: 14px;
+    color: #333;
+}
+
+.data-evento {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Horários */
+.item-horario {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    border-left: 4px solid #0066da;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.disciplina-horario {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.tempo-horario {
+    font-size: 12px;
+    color: #666;
+}
+
+.dia-horario{
+    font-size: 12px;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 1200px) {
+    .colunas-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .botao-menu-mobile {
+        display: flex;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.ativo {
+        transform: translateX(0);
+    }
+
+    .conteudo-principal {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .colunas-dashboard {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .coluna {
+        padding: 15px;
+    }
+
+    .menu-perfil {
+        width: 250px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .barra-superior {
+        padding: 12px 15px;
+    }
+
+    .logo-flashnotes {
+        font-size: 18px;
+    }
+
+    .conteudo-principal {
+        padding: 15px;
+    }
+
+    .coluna {
+        padding: 12px;
+    }
+
+    .cabecalho-coluna h2 {
+        font-size: 14px;
+    }
+
+    .item-tarefa,
+    .item-evento,
+    .item-horario {
+        padding: 10px;
+    }
+
+    .titulo-tarefa,
+    .disciplina-horario,
+    .info-evento strong {
+        font-size: 13px;
+    }
+
+    .lista-itens {
+        max-height: 300px;
+    }
+}
+
+.menu-notificacoes {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 340px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 15px;
+    display: none;
+    z-index: 9999;
+}
+
+.menu-notificacoes.ativo {
+    display: block;
+}

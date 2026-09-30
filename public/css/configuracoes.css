@@ -1,0 +1,632 @@
+/* ========== CABEÇALHO DA PÁGINA ========== */
+.cabecalho-configuracoes {
+    margin-bottom: 40px;
+}
+
+.titulo-configuracoes {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo-configuracoes h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.titulo-configuracoes svg {
+    color: #0066da;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+}
+
+/* ========== CONTAINER PRINCIPAL ========== */
+.container-configuracoes {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+/* ========== MENU LATERAL ========== */
+.menu-configuracoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.opcao-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background-color: #f5f7fa;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #666;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.opcao-menu:hover {
+    background-color: #eff2f7;
+    color: #0066da;
+    transform: translateX(4px);
+}
+
+.opcao-menu.ativa {
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    color: white;
+    border-color: #0066da;
+    box-shadow: 0 4px 12px rgba(0, 102, 218, 0.2);
+}
+
+.opcao-menu svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    stroke-width: 2;
+}
+
+.opcao-menu.opcao-deletar {
+    margin-top: 20px;
+    border-top: 2px solid #f0f0f0;
+    padding-top: 20px;
+    color: #e74c3c;
+}
+
+.opcao-menu.opcao-deletar:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #c0392b;
+}
+
+.opcao-menu.opcao-deletar.ativa {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border-color: #e74c3c;
+}
+
+/* ========== CONTEÚDO DAS SEÇÕES ========== */
+.conteudo-configuracoes {
+    background: linear-gradient(135deg, #f5f7fa 0%, #f0f3f7 100%);
+    border-radius: 16px;
+    padding: 40px;
+    border: 1px solid rgba(0, 102, 218, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 102, 218, 0.08);
+}
+
+.secao-ativa h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 32px 0;
+    letter-spacing: -0.3px;
+}
+
+/* ========== FORMULÁRIO ========== */
+.formulario-secao {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grupo-input label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 0.3px;
+}
+
+.grupo-input input,
+.grupo-input select {
+    padding: 14px 16px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 14px;
+    background-color: white;
+    color: #333;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+}
+
+.grupo-input input::placeholder {
+    color: #999;
+}
+
+.grupo-input input:focus,
+.grupo-input select:focus {
+    border-color: #0066da;
+    background-color: #f9fbff;
+    box-shadow: 0 0 0 4px rgba(0, 102, 218, 0.1);
+}
+
+/* Texto de apoio abaixo de um campo */
+.ajuda-input {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.grupo-input input:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.botao-salvar {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    align-self: flex-start;
+    box-shadow: 0 4px 15px rgba(0, 102, 218, 0.3);
+    letter-spacing: 0.3px;
+}
+
+.botao-salvar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 102, 218, 0.4);
+}
+
+/* ========== PERFIL ========== */
+.info-perfil {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.avatar-perfil {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 102, 218, 0.2);
+}
+
+.dados-perfil {
+    flex: 1;
+}
+
+.dados-perfil p {
+    font-size: 14px;
+    color: #333;
+    margin: 12px 0;
+    font-weight: 500;
+}
+
+.dados-perfil strong {
+    color: #0066da;
+    font-weight: 700;
+}
+
+/* ========== NOTIFICAÇÕES ========== */
+.opcao-notificacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.opcao-notificacao:hover {
+    border-color: #0066da;
+    box-shadow: 0 2px 8px rgba(0, 102, 218, 0.1);
+}
+
+.info-notificacao h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+}
+
+.info-notificacao p {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+/* ========== TOGGLE SWITCH ========== */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 28px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #0066da;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* ========== TEMA ========== */
+.opcoes-tema {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.opcao-tema {
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+}
+
+.opcao-tema:hover {
+    border-color: #0066da;
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 102, 218, 0.1);
+}
+
+.opcao-tema.ativa {
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    border-color: #0066da;
+    color: white;
+}
+
+.preview-tema {
+    width: 100%;
+    height: 80px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.preview-tema.claro {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    border: 1px solid #ddd;
+}
+
+.preview-tema.escuro {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+}
+
+.preview-tema.automatico {
+    background: linear-gradient(135deg, #ffffff 0%, #2a2a2a 100%);
+}
+
+.opcao-tema h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+}
+
+.opcao-tema p {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+.opcao-tema.ativa p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ========== DELETAR CONTA ========== */
+.aviso-deletar {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 12px;
+    border-left: 4px solid #e74c3c;
+    margin-bottom: 32px;
+}
+
+.aviso-deletar svg {
+    color: #e74c3c;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.aviso-deletar h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #c0392b;
+    margin: 0 0 8px 0;
+}
+
+.aviso-deletar p {
+    font-size: 13px;
+    color: #c0392b;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.formulario-deletar {
+    border-top: 2px solid #f0f0f0;
+    padding-top: 24px;
+}
+
+.confirmacao-deletar {
+    margin-top: 20px;
+}
+
+.checkbox-confirmacao {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #333;
+    font-weight: 500;
+}
+
+.checkbox-confirmacao input {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #0066da;
+}
+
+.botao-deletar-conta {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    align-self: flex-start;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    letter-spacing: 0.3px;
+    margin-top: 20px;
+}
+
+.botao-deletar-conta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+}
+
+.botao-deletar-conta:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.mensagem-sucesso {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #d1fae5;
+    color: #065f46;
+    font-weight: 600;
+}
+
+.mensagem-erro {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #fee2e2;
+    color: #991b1b;
+    font-weight: 600;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 1024px) {
+    .container-configuracoes {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .menu-configuracoes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 8px;
+        position: static;
+        height: auto;
+    }
+
+    .opcao-menu {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .opcao-menu svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .opcao-menu.opcao-deletar {
+        margin-top: 0;
+        border-top: none;
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .titulo-configuracoes h1 {
+        font-size: 26px;
+    }
+
+    .conteudo-configuracoes {
+        padding: 24px;
+    }
+
+    .secao-ativa h2 {
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
+
+    .info-perfil {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .avatar-perfil {
+        width: 100px;
+        height: 100px;
+    }
+
+    .dados-perfil {
+        text-align: center;
+    }
+
+    .opcoes-tema {
+        grid-template-columns: 1fr;
+    }
+
+    .botao-salvar,
+    .botao-deletar-conta {
+        width: 100%;
+        align-self: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    .conteudo-principal {
+        padding: 20px;
+    }
+
+    .titulo-configuracoes h1 {
+        font-size: 22px;
+    }
+
+    .titulo-configuracoes svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .menu-configuracoes {
+        grid-template-columns: 1fr;
+    }
+
+    .opcao-menu {
+        padding: 12px 14px;
+        font-size: 12px;
+    }
+
+    .conteudo-configuracoes {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .secao-ativa h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .formulario-secao {
+        gap: 16px;
+    }
+
+    .grupo-input {
+        gap: 8px;
+    }
+
+    .grupo-input input {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .grupo-input label {
+        font-size: 12px;
+    }
+
+    .avatar-perfil {
+        width: 80px;
+        height: 80px;
+    }
+
+    .dados-perfil p {
+        font-size: 13px;
+        margin: 8px 0;
+    }
+
+    .opcao-notificacao {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .toggle-switch {
+        align-self: flex-end;
+    }
+
+    .aviso-deletar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .checkbox-confirmacao {
+        font-size: 12px;
+    }
+
+    .botao-salvar,
+    .botao-deletar-conta {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+

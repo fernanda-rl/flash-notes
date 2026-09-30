@@ -1,0 +1,521 @@
+/* =====================================================
+   FOCO - Flashnotes
+   =====================================================
+   A tela toda é dimensionada para caber numa janela de notebook
+   sem rolagem: os quatro painéis ficam em duas linhas, e cada
+   medida daqui (fontes, paddings, alturas) é menor que a das
+   outras telas justamente por isso. Ao mexer em qualquer valor,
+   confira se a soma das duas linhas ainda cabe. */
+
+/* Esta folha só é carregada em foco.php, então pode apertar o
+   respiro padrão do conteúdo (30px em dashboard.css) sem afetar as
+   outras telas. São 20px a menos na conta da altura. */
+.conteudo-principal {
+    padding: 20px 24px;
+}
+
+/* ========== CABEÇALHO DA PÁGINA ========== */
+.cabecalho-foco {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.titulo-foco {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.titulo-foco h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.titulo-foco img {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+/* ========== LAYOUT ========== */
+/* Os quatro painéis são células de UMA grade de duas colunas iguais,
+   na ordem cronômetro / tempos / estudando / sessões:
+
+       cronômetro   |   tempos
+       estudando    |   últimas sessões
+
+   Sem `align-items: start`, cada painel estica até a altura da sua
+   linha — é isso que deixa os cartões vizinhos do mesmo tamanho e as
+   bordas alinhadas. Colunas em `1fr` iguais mantêm as larguras
+   idênticas. */
+.grade-foco {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 0;
+}
+
+/* min-width: 0 impede que um título longo de tarefa estique a célula
+   além da coluna, o que desalinharia a grade inteira. */
+.grade-foco > .painel-foco {
+    min-width: 0;
+}
+
+/* ========== PAINÉIS ========== */
+.painel-foco {
+    background: linear-gradient(135deg, #f5f7fa 0%, #f0f3f7 100%);
+    border: 1px solid rgba(0, 102, 218, 0.08);
+    border-radius: 16px;
+    padding: 46px 48px;
+}
+
+.painel-foco h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.2px;
+}
+
+/* ========== CRONÔMETRO ========== */
+/* O painel do cronômetro usa o azul da marca, como os modais: é o
+   elemento principal da tela e precisa se destacar dos cartões
+   claros ao lado. */
+.painel-cronometro {
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    border: none;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    transition: box-shadow 0.3s ease;
+
+    /* Como a célula estica até a altura da linha, o conteúdo fica
+       centrado na vertical em vez de grudado no topo. */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Notificação visual do fim de cada etapa: o painel inteiro ganha um
+   halo por alguns segundos, visível mesmo de longe. */
+.painel-cronometro.destacado {
+    box-shadow: 0 0 0 6px rgba(0, 102, 218, 0.25);
+}
+
+.etapa-atual {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.mostrador {
+    /* Tabular para os dígitos não "dançarem" a cada segundo */
+    font-variant-numeric: tabular-nums;
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.05;
+    margin: 6px 0 2px 0;
+    letter-spacing: -2px;
+}
+
+.contador-ciclos {
+    font-size: 12px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* min-height reservado: sem ele, o painel encolhe e cresce de novo a
+   cada aviso, empurrando a página. */
+.aviso-etapa {
+    min-height: 17px;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 8px 0 0 0;
+    color: #ffffff;
+}
+
+.botoes-cronometro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.botao-foco {
+    padding: 11px 26px;
+    border: none;
+    border-radius: 28px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+    background-color: white;
+    color: #0066da;
+}
+
+.botao-foco:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.botao-foco:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.botao-foco:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Parar é a ação que encerra a sessão: fica em contorno, para não
+   competir com Iniciar/Retomar. */
+.botao-parar {
+    background-color: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.botao-som {
+    margin-top: 12px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-som:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+}
+
+.botao-som.silenciado {
+    opacity: 0.7;
+}
+
+/* ========== PRESETS ========== */
+.presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.botao-preset {
+    padding: 7px 12px;
+    border: 2px solid rgba(0, 102, 218, 0.25);
+    border-radius: 20px;
+    background-color: transparent;
+    color: #0066da;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.botao-preset:hover:not(:disabled) {
+    background-color: rgba(0, 102, 218, 0.1);
+}
+
+.botao-preset.ativo {
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    border-color: #0052b3;
+    color: white;
+}
+
+.botao-preset:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ========== CAMPOS ========== */
+/* Os quatro tempos numa linha só. Em duas linhas, como era antes, o
+   painel ficava ~70px mais alto e empurrava a página para fora da
+   janela. Abaixo de 1100px a coluna fica estreita demais para quatro
+   campos e eles voltam a ser dois por linha. */
+.campos-tempo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: end;
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.grupo-campo + .grupo-campo {
+    margin-top: 10px;
+}
+
+.campos-tempo .grupo-campo + .grupo-campo {
+    margin-top: 0;
+}
+
+.grupo-campo label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+}
+
+.grupo-campo input,
+.grupo-campo select {
+    padding: 9px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    min-width: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.grupo-campo input:focus,
+.grupo-campo select:focus {
+    border-color: #0066da;
+    box-shadow: 0 0 0 3px rgba(0, 102, 218, 0.15);
+}
+
+.grupo-campo input:disabled,
+.grupo-campo select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.grupo-campo select {
+    cursor: pointer;
+}
+
+/* O min-height reserva a linha mesmo vazia: sem ele, a mensagem de
+   "Configuração salva" empurraria a página ao aparecer. */
+.aviso-configuracao {
+    min-height: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #c62828;
+    margin: 6px 0 0 0;
+}
+
+/* Mesmo elemento, usado para confirmar que a configuração foi salva */
+.aviso-configuracao.aviso-ok {
+    color: #2e7d32;
+}
+
+.botao-salvar-foco {
+    width: 100%;
+    margin-top: 8px;
+    padding: 9px 24px;
+    background: linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.botao-salvar-foco:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 102, 218, 0.3);
+}
+
+.botao-salvar-foco:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.ajuda-foco {
+    font-size: 11px;
+    line-height: 1.4;
+    color: #666;
+    margin: 8px 0 0 0;
+}
+
+/* ========== ÚLTIMAS SESSÕES ========== */
+/* A explicação fica logo abaixo do título, e não colada na lista */
+.ajuda-historico {
+    margin: -4px 0 12px 0;
+}
+
+/* A lista mostra DUAS sessões e rola para as outras (o PHP entrega as
+   dez mais recentes). O teto vem da conta "dois itens + o espaço
+   entre eles", e não de um número solto de pixels: se um dia o item
+   mudar de tamanho, basta corrigir --altura-item.
+
+   É o que mantém este painel da mesma altura do "Estudando" ao lado;
+   sem o teto, dez sessões esticariam a linha inteira da grade. */
+.lista-sessoes {
+    --altura-item: 54px;
+    --espaco-item: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-item);
+
+    max-height: calc(2 * var(--altura-item) + var(--espaco-item));
+    overflow-y: auto;
+    /* Explícito: sem isto qualquer item que transborde um pixel abriria
+       uma barra de rolagem horizontal. */
+    overflow-x: hidden;
+
+    /* Respiro para a barra de rolagem não encostar no selo */
+    padding-right: 6px;
+}
+
+.item-sessao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 14px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border-left: 4px solid #0066da;
+
+    /* Altura fixa para que "dois itens visíveis" seja sempre verdade,
+       e flex-shrink: 0 para que a lista com rolagem não os comprima. */
+    height: var(--altura-item);
+    flex-shrink: 0;
+}
+
+.duracao-sessao {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0066da;
+    min-width: 74px;
+    flex-shrink: 0;
+}
+
+.info-sessao {
+    flex: 1;
+    min-width: 0;
+}
+
+.data-sessao {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 2px 0;
+}
+
+/* Uma linha só: com a altura do item fixa, um título de tarefa longo
+   quebraria em duas e vazaria do cartão. O texto inteiro continua
+   disponível na dica do mouse (atributo title). */
+.vinculo-sessao {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.selo-sessao {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.selo-concluida {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.selo-interrompida {
+    background-color: #fff3e0;
+    color: #b26a00;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+/* Quatro campos numa linha exigem largura: em telas menores a coluna
+   fica estreita demais e eles voltam a ser dois por linha. */
+@media (max-width: 1100px) {
+    .campos-tempo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .grade-foco {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Daqui para baixo a tela rola de qualquer forma: o cronômetro
+       volta a ser grande, já que não há mais o compromisso de caber
+       tudo numa janela só. */
+    .mostrador {
+        font-size: 64px;
+    }
+
+    .botao-foco {
+        flex: 1;
+        min-width: 120px;
+        padding: 13px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-foco h1 {
+        font-size: 22px;
+    }
+
+    .titulo-foco img {
+        width: 26px;
+        height: 26px;
+    }
+
+    .painel-foco {
+        padding: 18px;
+    }
+
+    .painel-cronometro {
+        padding: 28px 18px;
+    }
+
+    .mostrador {
+        font-size: 52px;
+    }
+
+    .campos-tempo {
+        grid-template-columns: 1fr;
+    }
+
+    /* No celular a coluna é única e não há painel ao lado para
+       acompanhar: o item volta a ter altura livre para poder quebrar
+       em duas linhas, e a lista deixa de ser limitada a duas. */
+    .item-sessao {
+        flex-wrap: wrap;
+        gap: 10px;
+        height: auto;
+    }
+
+    .lista-sessoes {
+        max-height: none;
+    }
+
+    .duracao-sessao {
+        min-width: 0;
+    }
+}

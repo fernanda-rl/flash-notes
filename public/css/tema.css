@@ -1,0 +1,713 @@
+/* =====================================================
+   TEMA (APARÊNCIA) - Flashnotes
+   =====================================================
+   Carregado por ÚLTIMO em todas as páginas, depois dos CSS
+   de cada tela, para poder sobrescrever as cores.
+
+   Como funciona:
+   - :root guarda a paleta CLARA, com exatamente as mesmas cores
+     que o sistema já usava. Nada muda no modo claro.
+   - O bloco @media (prefers-color-scheme: dark) troca a paleta
+     quando o navegador/sistema está no escuro, MAS só se o usuário
+     não tiver escolhido "Claro" (:root:not([data-tema="claro"])).
+   - O bloco :root[data-tema="escuro"] força o escuro quando o
+     usuário escolhe "Escuro", independentemente do sistema.
+
+   O atributo data-tema é escrito na tag <html> pelo tema.php:
+   ausente = "Automático", "claro" e "escuro" = escolha fixa.
+   ===================================================== */
+
+:root {
+    --fundo-app:        #f5f5f5;
+    --fundo-superficie: #ffffff;
+    --fundo-suave:      #f9f9f9;
+    --fundo-suave-2:    #f0f0f0;
+    --fundo-campo:      #f8f9fa;
+    --fundo-hover:      #eef4fd;
+
+    --card-gradiente:   linear-gradient(135deg, #f5f7fa 0%, #f0f3f7 100%);
+    --gradiente-horario: linear-gradient(135deg, #e8e8e8 0%, #d9d9d9 100%);
+
+    --texto-forte:      #1a1a1a;
+    --texto:            #333333;
+    --texto-medio:      #555555;
+    --texto-fraco:      #666666;
+    --texto-apagado:    #888888;
+
+    --borda:            #e0e0e0;
+    --borda-suave:      #f0f0f0;
+
+    --azul:             #0066da;
+    --azul-escuro:      #0052b3;
+    --azul-barra:       #0066da;
+    --azul-gradiente:   linear-gradient(135deg, #0066da 0%, #0052b3 100%);
+    --azul-suave-8:     rgba(0, 102, 218, 0.08);
+    --azul-suave-10:    rgba(0, 102, 218, 0.10);
+    --azul-suave-20:    rgba(0, 102, 218, 0.20);
+
+    --sombra-card:      rgba(0, 0, 0, 0.08);
+    --sombra-menu:      rgba(0, 0, 0, 0.15);
+
+    --filtro-icone:     none;
+
+    --sucesso-fundo:    #d1fae5;
+    --sucesso-texto:    #065f46;
+    --erro-fundo:       #fee2e2;
+    --erro-texto:       #991b1b;
+
+    /* Terceiro estado, nem sucesso nem erro: usado no selo das sessões
+       de foco interrompidas. */
+    --aviso-fundo:      #fff3e0;
+    --aviso-texto:      #b26a00;
+}
+
+/* ---------- Paleta escura: automático (segue o sistema) ---------- */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-tema="claro"]) {
+        --fundo-app:        #171a21;
+        --fundo-superficie: #1f232c;
+        --fundo-suave:      #252a34;
+        --fundo-suave-2:    #2d323e;
+        --fundo-campo:      #252a34;
+        --fundo-hover:      #2d3444;
+
+        --card-gradiente:   linear-gradient(135deg, #1f232c 0%, #242934 100%);
+        --gradiente-horario: linear-gradient(135deg, #272d38 0%, #2e3441 100%);
+
+        --texto-forte:      #f2f4f8;
+        --texto:            #e3e7ee;
+        --texto-medio:      #c4cad5;
+        --texto-fraco:      #9aa3b2;
+        --texto-apagado:    #7f8897;
+
+        --borda:            #333a47;
+        --borda-suave:      #2a303b;
+
+        --azul:             #6aa9ff;
+        --azul-escuro:      #4a8ae8;
+        --azul-barra:       #1b2a44;
+        --azul-gradiente:   linear-gradient(135deg, #2f6fc4 0%, #24548f 100%);
+        --azul-suave-8:     rgba(106, 169, 255, 0.10);
+        --azul-suave-10:    rgba(106, 169, 255, 0.14);
+        --azul-suave-20:    rgba(106, 169, 255, 0.28);
+
+        --sombra-card:      rgba(0, 0, 0, 0.40);
+        --sombra-menu:      rgba(0, 0, 0, 0.55);
+
+        --filtro-icone:     brightness(0) invert(1);
+
+        --sucesso-fundo:    rgba(46, 160, 100, 0.16);
+        --sucesso-texto:    #7fe0a8;
+        --erro-fundo:       rgba(220, 70, 70, 0.16);
+        --erro-texto:       #ff9b9b;
+        --aviso-fundo:      rgba(200, 145, 40, 0.18);
+        --aviso-texto:      #f0bf76;
+    }
+}
+
+/* ---------- Paleta escura: escolha fixa do usuário ---------- */
+:root[data-tema="escuro"] {
+    --fundo-app:        #171a21;
+    --fundo-superficie: #1f232c;
+    --fundo-suave:      #252a34;
+    --fundo-suave-2:    #2d323e;
+    --fundo-campo:      #252a34;
+    --fundo-hover:      #2d3444;
+
+    --card-gradiente:   linear-gradient(135deg, #1f232c 0%, #242934 100%);
+    --gradiente-horario: linear-gradient(135deg, #272d38 0%, #2e3441 100%);
+
+    --texto-forte:      #f2f4f8;
+    --texto:            #e3e7ee;
+    --texto-medio:      #c4cad5;
+    --texto-fraco:      #9aa3b2;
+    --texto-apagado:    #7f8897;
+
+    --borda:            #333a47;
+    --borda-suave:      #2a303b;
+
+    --azul:             #6aa9ff;
+    --azul-escuro:      #4a8ae8;
+    --azul-barra:       #1b2a44;
+    --azul-gradiente:   linear-gradient(135deg, #2f6fc4 0%, #24548f 100%);
+    --azul-suave-8:     rgba(106, 169, 255, 0.10);
+    --azul-suave-10:    rgba(106, 169, 255, 0.14);
+    --azul-suave-20:    rgba(106, 169, 255, 0.28);
+
+    --sombra-card:      rgba(0, 0, 0, 0.40);
+    --sombra-menu:      rgba(0, 0, 0, 0.55);
+
+    --filtro-icone:     brightness(0) invert(1);
+
+    --sucesso-fundo:    rgba(46, 160, 100, 0.16);
+    --sucesso-texto:    #7fe0a8;
+    --erro-fundo:       rgba(220, 70, 70, 0.16);
+    --erro-texto:       #ff9b9b;
+    --aviso-fundo:      rgba(200, 145, 40, 0.18);
+    --aviso-texto:      #f0bf76;
+}
+
+/* Faz o navegador pintar barras de rolagem e campos nativos no tom certo */
+:root { color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-tema="claro"]) { color-scheme: dark; } }
+:root[data-tema="escuro"] { color-scheme: dark; }
+:root[data-tema="claro"]  { color-scheme: light; }
+
+/* =====================================================
+   ESTRUTURA GERAL (dashboard.css)
+   ===================================================== */
+
+body {
+    background-color: var(--fundo-app);
+    color: var(--texto);
+}
+
+.barra-superior,
+.sidebar {
+    background-color: var(--azul-barra);
+}
+
+.coluna {
+    background-color: var(--fundo-superficie);
+    box-shadow: 0 2px 8px var(--sombra-card);
+}
+
+.cabecalho-coluna {
+    border-bottom-color: var(--borda-suave);
+}
+
+.cabecalho-coluna h2 { color: var(--texto); }
+.cabecalho-coluna svg { color: var(--azul); }
+
+.item-tarefa,
+.item-evento,
+.item-horario {
+    background-color: var(--fundo-suave);
+    border-left-color: var(--azul);
+}
+
+/* Sem transform aqui: deslocar o item abriria barra de rolagem
+   horizontal dentro de .lista-itens. O destaque é só de cor. */
+.item-tarefa:hover,
+.item-evento:hover,
+.item-horario:hover {
+    background-color: var(--fundo-hover);
+    border-left-color: var(--azul);
+}
+
+.titulo-tarefa,
+.disciplina-horario,
+.info-evento strong { color: var(--texto); }
+
+.vencimento,
+.tempo-horario,
+.data-evento { color: var(--texto-fraco); }
+
+.status-tarefa { color: var(--azul); }
+
+.disciplina-item {
+    background-color: var(--azul-suave-10);
+    color: var(--azul);
+}
+
+.menu-perfil,
+.menu-notificacoes {
+    background-color: var(--fundo-superficie);
+    box-shadow: 0 10px 30px var(--sombra-menu);
+}
+
+.opcao-menu { color: var(--texto); }
+.opcao-menu:hover { background-color: var(--fundo-suave); }
+.divisor-menu { border-top-color: var(--borda-suave); }
+.nome-usuario { color: var(--texto-forte); }
+.email-usuario { color: var(--texto-fraco); }
+.avatar-perfil { background-color: var(--fundo-suave-2); }
+
+/* Notificações: sidebar.css pinta estes elementos de branco, por isso
+   precisam ser recobertos aqui um a um. */
+.item-notificacao h4 { color: var(--texto-forte); }
+.item-notificacao p { color: var(--texto-medio); }
+.topo-notificacoes h3 { color: var(--texto-forte); }
+.sem-notificacoes { color: var(--texto-fraco); }
+
+.item-notificacao { background: var(--fundo-suave); }
+
+.item-notificacao.nao-lida,
+.item-notificacao:hover { background: var(--fundo-hover); }
+
+.rodape-notificacao span { color: var(--texto-apagado); }
+
+.botao-marcar-lida {
+    background: var(--azul);
+    color: #ffffff;
+}
+
+.botao-marcar-lida:hover {
+    background: var(--azul-escuro);
+    color: #ffffff;
+}
+
+.menu-notificacoes::-webkit-scrollbar-thumb { background: var(--borda); }
+
+/* O menu de perfil abre sobre a barra: seus itens precisam do texto
+   claro, que sidebar.css fixa em #333. */
+.menu-perfil .opcao-menu { color: var(--texto); }
+.menu-perfil .opcao-menu:hover { background: var(--fundo-suave); }
+.menu-perfil .opcao-sair { color: #ff7b7b; }
+
+/* =====================================================
+   ELEMENTOS AZUIS
+   =====================================================
+   Botões, modais e destaques usam o azul vivo da marca. No escuro
+   esse tom fica saturado demais contra o fundo, então --azul-gradiente
+   assume uma versão mais contida. No claro o valor é o original. */
+
+.botao-adicionar,
+.botao-salvar,
+.botao-mes,
+.modal,
+.dia-calendario.hoje,
+.opcao-tema.ativa,
+.opcao-tema:has(input[type="radio"]:checked) {
+    background: var(--azul-gradiente);
+}
+
+.botao-adicionar { box-shadow: 0 4px 15px var(--azul-suave-20); }
+.modal { box-shadow: 0 20px 60px var(--sombra-menu); }
+
+.card-disciplina::before,
+.card-horario::before {
+    background: var(--azul-gradiente);
+}
+
+/* Dentro dos modais o fundo é azul, então o texto continua branco e os
+   botões claros — nada a recobrir ali. */
+
+/* =====================================================
+   CABEÇALHOS E CAMPOS DE BUSCA (disciplinas.css)
+   ===================================================== */
+
+.titulo-pagina h1,
+.titulo-tarefas h1,
+.titulo-agenda h1,
+.titulo-horarios h1,
+.titulo-configuracoes h1 { color: var(--texto-forte); }
+
+.titulo-pagina p { color: var(--texto-fraco); }
+
+.titulo-pagina svg,
+.titulo-tarefas svg,
+.titulo-agenda svg,
+.titulo-horarios svg,
+.titulo-eventos svg { color: var(--azul); }
+
+/* Ícones carregados por <img>: são arquivos SVG pretos e não herdam
+   currentColor, então sumiriam no fundo escuro. O filtro os deixa
+   brancos apenas no tema escuro (no claro o token vale "none"). */
+.titulo-pagina img,
+.titulo-tarefas img,
+.titulo-agenda img,
+.titulo-horarios img,
+.titulo-configuracoes img,
+.cabecalho-coluna img,
+.cabecalho-caderno img,
+.avatar-perfil img,
+.menu-perfil .opcao-menu img {
+    filter: var(--filtro-icone);
+}
+
+.campo-pesquisa {
+    background-color: var(--fundo-campo);
+    border-color: var(--borda);
+    color: var(--azul);
+}
+
+.campo-pesquisa:focus {
+    background-color: var(--fundo-superficie);
+    border-color: var(--azul);
+}
+
+/* =====================================================
+   CARDS (disciplinas, tarefas, eventos, horários, cadernos)
+   ===================================================== */
+
+.card-disciplina,
+.card-tarefa,
+.card-evento,
+.card-anotacao,
+.card-arquivo,
+.card-vinculado,
+.cabecalho-caderno,
+.mensagem-vazia {
+    background: var(--card-gradiente);
+    border-color: var(--azul-suave-8);
+}
+
+/* Os cards de Horários têm um cinza próprio, mais forte que o dos
+   demais cartões. Token separado para não achatar esse contraste. */
+.card-horario {
+    background: var(--gradiente-horario);
+}
+
+.card-disciplina:hover,
+.card-tarefa:hover,
+.card-evento:hover,
+.card-horario:hover,
+.card-anotacao:hover,
+.card-arquivo:hover,
+.card-vinculado:hover {
+    box-shadow: 0 12px 32px var(--sombra-card);
+    border-color: var(--azul-suave-20);
+}
+
+.card-disciplina h3,
+.card-tarefa h3,
+.card-evento h3,
+.card-anotacao h3,
+.info-arquivo h3,
+.conteudo-vinculado h3,
+.nome-disciplina { color: var(--texto-forte); }
+
+.info-disciplina p,
+.info-tarefa p,
+.conteudo-anotacao { color: var(--texto-medio); }
+
+.info-disciplina strong,
+.info-tarefa strong { color: var(--texto); }
+
+.horario-aula,
+.info-arquivo p,
+.data-anotacao,
+.mensagem-vazia p { color: var(--texto-fraco); }
+
+.acoes-disciplina,
+.acoes-tarefa { border-top-color: var(--azul-suave-10); }
+
+.botao-editar {
+    background-color: var(--azul-suave-10);
+    color: var(--azul);
+}
+
+.botao-editar:hover { background-color: var(--azul-suave-20); }
+
+/* Horários: cabeçalho das colunas de cada dia */
+.titulo-dia { color: var(--texto-forte); }
+.card-horario.vazio { background: var(--fundo-suave); }
+
+/* =====================================================
+   CADERNOS (cadernos.css)
+   ===================================================== */
+
+.card-caderno { color: inherit; }
+.professor-caderno { color: var(--texto-fraco); }
+
+.contador-caderno {
+    background-color: var(--azul-suave-10);
+    color: var(--azul);
+}
+
+.abrir-caderno,
+.voltar-cadernos { color: var(--azul); }
+.abrir-caderno { border-top-color: var(--azul-suave-10); }
+
+.abas-caderno { border-bottom-color: var(--borda); }
+.aba { color: var(--texto-fraco); }
+.aba:hover,
+.aba.ativa { color: var(--azul); }
+.aba.ativa { border-bottom-color: var(--azul); }
+
+.contador-aba {
+    background-color: var(--azul-suave-10);
+    color: var(--azul);
+}
+
+.aba.ativa .contador-aba {
+    background-color: var(--azul);
+    color: var(--fundo-app);
+}
+
+.cabecalho-painel h2 { color: var(--texto-forte); }
+
+.icone-arquivo {
+    background-color: var(--azul-suave-10);
+    color: var(--azul);
+}
+
+.corpo-disciplina { color: inherit; }
+
+.botao-secundario {
+    border-color: var(--azul);
+    color: var(--azul);
+}
+
+.lista-vazia { color: var(--texto-apagado); }
+
+/* =====================================================
+   AGENDA (agenda.css)
+   ===================================================== */
+
+/* O calendário é um cartão; a coluna de eventos, não. Ela é apenas um
+   contêiner transparente em que cada .card-evento é o próprio cartão,
+   então não recebe fundo nenhum aqui.
+   Usamos o atalho `background` (e não background-color) porque o valor
+   original é um gradiente: só trocar a cor deixaria o gradiente claro
+   por cima no modo escuro. */
+.calendario {
+    background: var(--card-gradiente);
+    border-color: var(--azul-suave-8);
+    box-shadow: 0 4px 12px var(--sombra-card);
+}
+
+.cabecalho-calendario h2,
+.titulo-eventos h2 { color: var(--texto-forte); }
+
+.dia-semana { color: var(--texto-fraco); }
+
+.dia-calendario { color: var(--texto); }
+.dia-calendario:hover { background-color: var(--fundo-suave); }
+
+.dia-calendario.outro-mes {
+    background-color: var(--fundo-suave);
+    color: var(--texto-apagado);
+}
+
+.dia-calendario.outro-mes:hover { background-color: var(--fundo-suave-2); }
+
+.lista-eventos::-webkit-scrollbar-track { background: var(--fundo-suave-2); }
+
+.disciplina-evento {
+    background-color: var(--azul-suave-10);
+    color: var(--azul);
+}
+
+.evento-dia-popup h3,
+.evento-dia-popup p { color: inherit; }
+
+/* =====================================================
+   CONFIGURAÇÕES (configuracoes.css)
+   ===================================================== */
+
+/* O menu lateral de Configurações usa a MESMA classe .opcao-menu do
+   menu de perfil, que sidebar.css pinta com texto #333. Sem esta regra
+   os itens ficam ilegíveis no escuro. */
+.menu-configuracoes .opcao-menu {
+    background-color: var(--fundo-suave);
+    color: var(--texto-medio);
+}
+
+.menu-configuracoes .opcao-menu:hover {
+    background-color: var(--fundo-suave-2);
+    color: var(--azul);
+}
+
+.menu-configuracoes .opcao-menu.ativa {
+    background: var(--azul-gradiente);
+    border-color: var(--azul-escuro);
+    color: #ffffff;
+}
+
+.menu-configuracoes .opcao-menu.opcao-deletar { color: #ff7b7b; }
+
+/* Mensagens de Configurações (classes próprias, sem .mensagem-feedback) */
+.secao-ativa .mensagem-sucesso,
+.conteudo-configuracoes .mensagem-sucesso {
+    background: var(--sucesso-fundo);
+    color: var(--sucesso-texto);
+}
+
+.secao-ativa .mensagem-erro,
+.conteudo-configuracoes .mensagem-erro {
+    background: var(--erro-fundo);
+    color: var(--erro-texto);
+}
+
+/* Aviso de exclusão de conta */
+.aviso-deletar h3 { color: var(--texto-forte); }
+.aviso-deletar p { color: var(--texto-medio); }
+.checkbox-confirmacao span { color: var(--texto-medio); }
+
+/* Atalho `background`: o valor original é um gradiente, e trocar só a
+   cor deixaria o gradiente claro por cima no modo escuro. */
+.conteudo-configuracoes {
+    background: var(--card-gradiente);
+    box-shadow: 0 2px 8px var(--sombra-card);
+}
+
+.secao-ativa h2 { color: var(--texto-forte); }
+
+.grupo-input label { color: var(--texto); }
+
+.grupo-input input,
+.grupo-input select {
+    background-color: var(--fundo-campo);
+    border-color: var(--borda);
+    color: var(--texto);
+}
+
+.grupo-input input:disabled {
+    background-color: var(--fundo-suave-2);
+    color: var(--texto-fraco);
+}
+
+.grupo-input input::placeholder { color: var(--texto-apagado); }
+.ajuda-input { color: var(--texto-fraco); }
+
+.opcao-notificacao { background-color: var(--fundo-suave); }
+.opcao-notificacao:hover { background-color: var(--fundo-suave-2); }
+.info-notificacao h3 { color: var(--texto-forte); }
+.info-notificacao p { color: var(--texto-fraco); }
+
+.dados-perfil p { color: var(--texto-medio); }
+.dados-perfil strong { color: var(--texto); }
+
+/* Cartões de escolha de tema */
+.opcao-tema {
+    background-color: var(--fundo-superficie);
+    border-color: var(--borda);
+    color: var(--texto);
+}
+
+.opcao-tema:hover { border-color: var(--azul); }
+.opcao-tema p { color: var(--texto-fraco); }
+
+/* O radio fica escondido: o próprio cartão é o alvo do clique */
+.opcao-tema input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.opcao-tema { position: relative; display: block; }
+
+.opcao-tema.ativa,
+.opcao-tema:has(input[type="radio"]:checked) {
+    background: var(--azul-gradiente);
+    border-color: var(--azul-escuro);
+    color: #ffffff;
+}
+
+.opcao-tema.ativa p,
+.opcao-tema:has(input[type="radio"]:checked) p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* =====================================================
+   FOCO (foco.css)
+   =====================================================
+   O painel do cronômetro é azul como os modais, então seu conteúdo
+   continua branco e não precisa ser recoberto aqui. O que muda são
+   os cartões claros em volta: configuração, vínculo e histórico. */
+
+.titulo-foco h1 { color: var(--texto-forte); }
+.titulo-foco img { filter: var(--filtro-icone); }
+
+/* Atalho `background`: o valor original é um gradiente, e trocar só a
+   cor deixaria o gradiente claro por cima no modo escuro. */
+.painel-foco {
+    background: var(--card-gradiente);
+    border-color: var(--azul-suave-8);
+}
+
+.painel-foco h2 { color: var(--texto-forte); }
+
+.painel-cronometro { background: var(--azul-gradiente); }
+
+.painel-cronometro.destacado {
+    box-shadow: 0 0 0 6px var(--azul-suave-20);
+}
+
+.botao-preset {
+    border-color: var(--azul-suave-20);
+    color: var(--azul);
+}
+
+.botao-preset:hover:not(:disabled) { background-color: var(--azul-suave-10); }
+
+.botao-preset.ativo {
+    background: var(--azul-gradiente);
+    border-color: var(--azul-escuro);
+    color: #ffffff;
+}
+
+.botao-salvar-foco { background: var(--azul-gradiente); }
+
+.grupo-campo label { color: var(--texto); }
+
+.grupo-campo input,
+.grupo-campo select {
+    background-color: var(--fundo-campo);
+    border-color: var(--borda);
+    color: var(--texto);
+}
+
+.grupo-campo input:focus,
+.grupo-campo select:focus { border-color: var(--azul); }
+
+.ajuda-foco { color: var(--texto-fraco); }
+
+.aviso-configuracao { color: var(--erro-texto); }
+.aviso-configuracao.aviso-ok { color: var(--sucesso-texto); }
+
+.item-sessao {
+    background-color: var(--fundo-suave);
+    border-left-color: var(--azul);
+}
+
+.duracao-sessao { color: var(--azul); }
+.data-sessao { color: var(--texto); }
+.vinculo-sessao { color: var(--texto-fraco); }
+
+.selo-concluida {
+    background-color: var(--sucesso-fundo);
+    color: var(--sucesso-texto);
+}
+
+.selo-interrompida {
+    background-color: var(--aviso-fundo);
+    color: var(--aviso-texto);
+}
+
+/* =====================================================
+   MENSAGENS DE FEEDBACK (cadernos.css)
+   ===================================================== */
+
+.mensagem-feedback.mensagem-sucesso {
+    background-color: rgba(46, 125, 50, 0.14);
+    color: #7ddc94;
+    border-color: rgba(46, 125, 50, 0.35);
+}
+
+.mensagem-feedback.mensagem-erro {
+    background-color: rgba(198, 40, 40, 0.14);
+    color: #ff8f8f;
+    border-color: rgba(198, 40, 40, 0.35);
+}
+
+/* No claro, mantém exatamente as cores originais */
+:root[data-tema="claro"] .mensagem-feedback.mensagem-sucesso,
+:root:not([data-tema="escuro"]) .mensagem-feedback.mensagem-sucesso {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-color: rgba(46, 125, 50, 0.2);
+}
+
+:root[data-tema="claro"] .mensagem-feedback.mensagem-erro,
+:root:not([data-tema="escuro"]) .mensagem-feedback.mensagem-erro {
+    background-color: #ffebee;
+    color: #c62828;
+    border-color: rgba(198, 40, 40, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-tema="claro"]) .mensagem-feedback.mensagem-sucesso {
+        background-color: rgba(46, 125, 50, 0.14);
+        color: #7ddc94;
+        border-color: rgba(46, 125, 50, 0.35);
+    }
+
+    :root:not([data-tema="claro"]) .mensagem-feedback.mensagem-erro {
+        background-color: rgba(198, 40, 40, 0.14);
+        color: #ff8f8f;
+        border-color: rgba(198, 40, 40, 0.35);
+    }
+}

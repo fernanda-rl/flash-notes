@@ -1,0 +1,182 @@
+
+/* ========== CABEÇALHO DA PÁGINA ========== */
+.cabecalho-horarios {
+    margin-bottom: 40px;
+}
+
+.titulo-horarios {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo-horarios h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.titulo-horarios svg {
+    color: #0066da;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+}
+
+/* ========== GRADE SEMANAL ========== */
+.grade-semanal {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.coluna-dia {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.titulo-dia {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+    text-align: center;
+    letter-spacing: -0.2px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/* ========== LISTA DE HORÁRIOS ========== */
+.lista-horarios {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-horario {
+    background: linear-gradient(135deg, #e8e8e8 0%, #d9d9d9 100%);
+    border-radius: 16px;
+    padding: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card-horario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0066da 0%, #0052b3 100%);
+}
+
+.card-horario:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 102, 218, 0.2);
+}
+
+.nome-disciplina {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+}
+
+.horario-aula {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    letter-spacing: 0.1px;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 1200px) {
+    .grade-semanal {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .titulo-horarios h1 {
+        font-size: 26px;
+    }
+
+    .grade-semanal {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .titulo-dia {
+        font-size: 15px;
+        padding-bottom: 10px;
+    }
+
+    .card-horario {
+        padding: 14px;
+    }
+
+    .nome-disciplina {
+        font-size: 14px;
+    }
+
+    .horario-aula {
+        font-size: 12px;
+    }
+
+    .lista-horarios {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .conteudo-principal {
+        padding: 20px;
+    }
+
+    .titulo-horarios h1 {
+        font-size: 22px;
+    }
+
+    .titulo-horarios svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .grade-semanal {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .titulo-dia {
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .card-horario {
+        padding: 12px;
+    }
+
+    .nome-disciplina {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .horario-aula {
+        font-size: 11px;
+    }
+
+    .lista-horarios {
+        gap: 8px;
+    }
+}

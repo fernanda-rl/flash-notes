@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+.container-principal {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Seção Esquerda */
+.secao-esquerda {
+    flex: 1;
+    background-color: #fdfbf2;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    position: relative;
+}
+
+.menu-superior ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.menu-superior a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.menu-superior a.ativo {
+    border-bottom: 3px solid #0056b3;
+    padding-bottom: 5px;
+}
+
+.conteudo-ilustracao {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem-ilustracao {
+    max-width: 80%;
+    height: auto;
+}
+
+.rodape-esquerdo {
+    display: flex;
+    gap: 40px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.rodape-esquerdo a {
+    text-decoration: none;
+    color: #666;
+}
+
+/* Seção Direita */
+.secao-direita {
+    flex: 1;
+    background-color: #0066da;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.caixa-login {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.logo {
+    margin-bottom: 40px;
+}
+
+.texto-logo {
+    font-size: 3rem;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.texto-logo span {
+    font-style: normal;
+    margin-left: 5px;
+}
+
+.titulo-login {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.formulario-login {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.campo-entrada {
+    display: flex;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 5px 20px;
+    position: relative;
+}
+
+.campo-entrada label {
+    position: absolute;
+    top: -10px;
+    left: 25px;
+    background-color: #0066da;
+    padding: 0 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.campo-entrada input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 10px 0;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* Preenchimento automático do navegador.
+   O Chrome pinta o campo de branco e o texto de preto por conta própria,
+   com prioridade acima da folha de estilo — nem !important sobrescreve.
+   A saída é cobrir o fundo com uma sombra interna sólida e usar
+   -webkit-text-fill-color, já que o autofill ignora `color`. */
+.campo-entrada input:-webkit-autofill,
+.campo-entrada input:-webkit-autofill:hover,
+.campo-entrada input:-webkit-autofill:focus,
+.campo-entrada input:-webkit-autofill:active {
+    -webkit-box-shadow: inset 0 0 0 1000px #0066da;
+    box-shadow: inset 0 0 0 1000px #0066da;
+    -webkit-text-fill-color: white;
+    caret-color: white;
+    /* Evita o fade amarelado que o Chrome anima ao preencher */
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.botao-entrar {
+    background-color: #fdfbf2;
+    color: #333;
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.botao-entrar:hover {
+    background-color: #f0f0f0;
+}
+
+.links-auxiliares {
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+.links-auxiliares p {
+    margin-bottom: 10px;
+}
+
+.links-auxiliares a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Mensagens de Erro e Sucesso */
+.mensagem {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.mensagem-erro {
+    background-color: rgba(255, 77, 77, 0.2);
+    color: #ffcccc;
+    border: 1px solid rgba(255, 77, 77, 0.5);
+}
+
+.mensagem-sucesso {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #ccffcc;
+    border: 1px solid rgba(76, 175, 80, 0.5);
+}
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+    .container-principal {
+        flex-direction: column;
+    }
+    .secao-esquerda {
+        display: none; /* Oculta a ilustração em telas pequenas para focar no login */
+    }
+}
