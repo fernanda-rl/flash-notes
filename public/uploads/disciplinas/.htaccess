@@ -1,0 +1,22 @@
+# Os arquivos das disciplinas nunca são servidos diretamente por esta pasta.
+# O acesso passa obrigatoriamente por actions/baixar_arquivo.php, que confere
+# se o arquivo pertence ao usuário logado antes de entregá-lo.
+
+# Apache 2.4
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Apache 2.2
+<IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+</IfModule>
+
+# Cinto de segurança: mesmo que a regra acima falhe, nada aqui é executado.
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8 .pl .py .cgi .asp .sh
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8
