@@ -1,0 +1,56 @@
+# =====================================================
+# Flashnotes - arquivos fora do controle de versão
+# =====================================================
+
+# -----------------------------------------------------
+# Configuração com senhas reais
+# -----------------------------------------------------
+# O modelo versionado é o app/config/config.example.php
+app/config/config.php
+
+# -----------------------------------------------------
+# Arquivos enviados pelos usuários
+# -----------------------------------------------------
+# A pasta continua existindo (ver .gitkeep), mas o conteúdo não
+# vai para o repositório: são materiais pessoais dos estudantes.
+public/uploads/*
+!public/uploads/.gitkeep
+!public/uploads/disciplinas/
+public/uploads/disciplinas/*
+!public/uploads/disciplinas/.htaccess
+!public/uploads/disciplinas/.gitkeep
+
+# -----------------------------------------------------
+# Dependências do Composer
+# -----------------------------------------------------
+# Reinstaláveis com `composer install`
+/vendor/
+
+# -----------------------------------------------------
+# Backups e dumps com dados reais
+# -----------------------------------------------------
+# Contêm e-mails e hashes de senha de usuários reais.
+database/backup_*.sql
+database/*_backup.sql
+database/dump_*.sql
+
+# -----------------------------------------------------
+# Sistema operacional e editores
+# -----------------------------------------------------
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+*.code-workspace
+
+# -----------------------------------------------------
+# Ferramentas de IA / assistentes
+# -----------------------------------------------------
+.claude/
+
+# -----------------------------------------------------
+# Logs e temporários
+# -----------------------------------------------------
+*.log
+*.tmp
