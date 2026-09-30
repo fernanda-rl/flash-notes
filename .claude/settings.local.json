@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Process -FilePath \"C:\\\\xampp\\\\mysql\\\\bin\\\\mysqld.exe\" -ArgumentList \"--defaults-file=C:\\\\xampp\\\\mysql\\\\bin\\\\my.ini\",\"--standalone\" -WindowStyle Hidden)",
+      "PowerShell(& \"C:\\\\xampp\\\\mysql\\\\bin\\\\mysql.exe\" -u root -e \"SELECT VERSION\\(\\);\")",
+      "PowerShell(& \"C:\\\\xampp\\\\php\\\\php.exe\" -r \"echo 'save_path=' , \\(ini_get\\('session.save_path'\\) ?: sys_get_temp_dir\\(\\)\\), PHP_EOL, 'name=', ini_get\\('session.name'\\), PHP_EOL;\")"
+    ]
+  }
+}
